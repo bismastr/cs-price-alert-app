@@ -38,7 +38,7 @@ function App() {
             <div className="bg-blue-600 p-2 rounded-lg">
               <LayoutGrid className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
+            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500">
               Case Index
             </h1>
           </div>
