@@ -5,6 +5,7 @@ export interface CaseItem {
     old_sell_price: number;
     latest_sell_price: number;
     icon_url: string;
+    sparkline?: number[];
 }
 
 export interface PriceChangesResponse {
