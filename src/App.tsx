@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { LayoutGrid, Loader2, AlertCircle } from 'lucide-react';
+import { Loader2, AlertCircle } from 'lucide-react';
 import { usePriceChanges } from './hooks/usePriceChanges';
 import { useDebounce } from './hooks/useDebounce';
 import { CaseCard } from './components/CaseCard';
@@ -35,9 +35,11 @@ function App() {
       <header className="sticky top-0 z-10 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <LayoutGrid className="w-6 h-6 text-white" />
-            </div>
+            <img
+              src="https://cdn2.steamgriddb.com/icon/e1bd06c3f8089e7552aa0552cb387c92/32/512x512.png"
+              alt="CS2 Logo"
+              className="w-10 h-10 rounded-lg"
+            />
             <h1 className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500">
               Case Index
             </h1>
