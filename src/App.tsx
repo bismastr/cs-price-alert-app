@@ -40,7 +40,7 @@ function App() {
               alt="CS2 Logo"
               className="w-10 h-10 rounded-lg"
             />
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500">
+            <h1 className="text-2xl font-semibold uppercase tracking-wide text-zinc-900 dark:text-white" style={{ fontFamily: 'Teko, sans-serif' }}>
               Case Index
             </h1>
           </div>
