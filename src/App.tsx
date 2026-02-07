@@ -71,7 +71,11 @@ function App() {
         ) : !data?.data.items.length ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-full mb-4">
-              <LayoutGrid className="w-8 h-8 text-zinc-400" />
+              <img
+                src="https://cdn2.steamgriddb.com/icon/e1bd06c3f8089e7552aa0552cb387c92/32/512x512.png"
+                alt="CS2 Logo"
+                className="w-8 h-8 opacity-50"
+              />
             </div>
             <h3 className="text-lg font-semibold mb-2">No cases found</h3>
             <p className="text-zinc-500 dark:text-zinc-400">
