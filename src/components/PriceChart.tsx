@@ -66,7 +66,7 @@ export const PriceChart = ({
     data, 
     isLoading, 
     interval, 
-    onIntervalChange 
+    onIntervalChange
 }: PriceChartProps) => {
     const [hoveredData, setHoveredData] = useState<ChartDataPoint | null>(null);
 
@@ -97,22 +97,24 @@ export const PriceChart = ({
         <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
             <div className="p-5 border-b border-zinc-200 dark:border-zinc-800">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">
-                            Current Price
-                        </p>
-                        <div className="flex items-baseline gap-3">
-                            <span className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-                                ${currentPrice.toFixed(2)}
-                            </span>
-                            <span className={cn(
-                                "text-sm font-semibold px-2 py-1 rounded-lg",
-                                isPositive 
-                                    ? "bg-green-500/10 text-green-600 dark:text-green-400"
-                                    : "bg-red-500/10 text-red-600 dark:text-red-400"
-                            )}>
-                                {isPositive ? '+' : ''}{priceChange.percent.toFixed(2)}%
-                            </span>
+                    <div className="flex-1">
+                        <div>
+                            <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">
+                                Current Price
+                            </p>
+                            <div className="flex items-baseline gap-3">
+                                <span className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+                                    ${currentPrice.toFixed(2)}
+                                </span>
+                                <span className={cn(
+                                    "text-sm font-semibold px-2 py-1 rounded-lg",
+                                    isPositive 
+                                        ? "bg-green-500/10 text-green-600 dark:text-green-400"
+                                        : "bg-red-500/10 text-red-600 dark:text-red-400"
+                                )}>
+                                    {isPositive ? '+' : ''}{priceChange.percent.toFixed(2)}%
+                                </span>
+                            </div>
                         </div>
                     </div>
                     

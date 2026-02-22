@@ -50,3 +50,18 @@ export interface PriceStatsResponse {
     data: PriceStat[];
     success: boolean;
 }
+
+// Item details types
+export interface ItemDetails {
+    item_id: number;
+    name: string;
+    hash_name: string;
+    icon_url: string;
+    price: number;
+    sell_listing: number;
+}
+
+export interface ItemDetailsResponse {
+    data: ItemDetails;
+    success: boolean;
+}

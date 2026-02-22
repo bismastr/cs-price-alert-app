@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
-import { usePriceChart, usePriceStats, useItem } from '../hooks/useItemDetails';
+import { usePriceChart, usePriceStats, useItem, useItemDetailsQuery } from '../hooks/useItemDetails';
 import { PriceChart } from '../components/PriceChart';
 import { PriceStats } from '../components/PriceStats';
 import type { ChartInterval } from '../types';
@@ -18,6 +18,7 @@ export const ItemDetailPage = () => {
     const { data: itemData, isLoading: isItemLoading, isError: isItemError } = useItem(numericItemId);
     const { data: chartData, isLoading: isChartLoading } = usePriceChart(numericItemId, chartInterval);
     const { data: statsData, isLoading: isStatsLoading } = usePriceStats(numericItemId);
+    const { data: itemDetailsData } = useItemDetailsQuery(numericItemId);
 
     const item = itemData?.data.items?.[0];
 
@@ -88,10 +89,10 @@ export const ItemDetailPage = () => {
                 {/* Item Header */}
                 <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 mb-6">
                     <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
-                        <div className="w-40 h-40 flex-shrink-0 bg-zinc-100 dark:bg-zinc-800 rounded-2xl p-4 flex items-center justify-center">
+                        <div className="w-40 h-40 shrink-0 bg-zinc-100 dark:bg-zinc-800 rounded-2xl p-4 flex items-center justify-center">
                             <img
-                                src={`${STEAM_IMAGE_BASE_URL}${item.icon_url}/256fx256f`}
-                                alt={item.name}
+                                src={`${STEAM_IMAGE_BASE_URL}${itemDetailsData?.data?.icon_url ?? item.icon_url}/256fx256f`}
+                                alt={itemDetailsData?.data?.name ?? item.name}
                                 className="w-full h-full object-contain"
                             />
                         </div>
@@ -105,31 +106,18 @@ export const ItemDetailPage = () => {
                                 <div className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-xl">
                                     <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Current Price</p>
                                     <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-                                        ${(item.latest_sell_price / 100).toFixed(2)}
+                                        {itemDetailsData?.data
+                                            ? `$${(itemDetailsData.data.price / 100).toFixed(2)}`
+                                            : `$${(item.latest_sell_price / 100).toFixed(2)}`}
                                     </p>
                                 </div>
                                 
                                 <div className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-xl">
-                                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Previous Price</p>
-                                    <p className="text-2xl font-bold text-zinc-500 dark:text-zinc-400">
-                                        ${(item.old_sell_price / 100).toFixed(2)}
-                                    </p>
-                                </div>
-                                
-                                <div className={cn(
-                                    "px-4 py-2 rounded-xl",
-                                    isPositive 
-                                        ? "bg-green-500/10"
-                                        : "bg-red-500/10"
-                                )}>
-                                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">24h Change</p>
-                                    <p className={cn(
-                                        "text-2xl font-bold",
-                                        isPositive 
-                                            ? "text-green-600 dark:text-green-400"
-                                            : "text-red-600 dark:text-red-400"
-                                    )}>
-                                        {isPositive ? '+' : ''}{item.change_pct.toFixed(2)}%
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Sell Listing</p>
+                                    <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                                        {itemDetailsData?.data
+                                            ? itemDetailsData.data.sell_listing.toLocaleString()
+                                            : '—'}
                                     </p>
                                 </div>
                             </div>

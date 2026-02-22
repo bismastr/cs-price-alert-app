@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchPriceChart, fetchPriceStats, fetchItemById } from '../services/api';
+import { fetchPriceChart, fetchPriceStats, fetchItemById, fetchItemDetails } from '../services/api';
 import type { ChartInterval } from '../types';
 
 export const usePriceChart = (itemId: number, interval: ChartInterval = '3m') => {
@@ -25,5 +25,14 @@ export const useItem = (itemId: number) => {
         queryKey: ['item', itemId],
         queryFn: () => fetchItemById(itemId),
         enabled: !!itemId,
+    });
+};
+
+export const useItemDetailsQuery = (itemId: number) => {
+    return useQuery({
+        queryKey: ['itemDetails', itemId],
+        queryFn: () => fetchItemDetails(itemId),
+        enabled: !!itemId,
+        staleTime: 1000 * 60 * 5, // 5 minutes
     });
 };

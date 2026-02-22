@@ -4,7 +4,8 @@ import type {
     SearchParams, 
     ChartResponse, 
     ChartInterval,
-    PriceStatsResponse 
+    PriceStatsResponse,
+    ItemDetailsResponse
 } from '../types';
 
 const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
@@ -55,5 +56,10 @@ export const fetchItemById = async (itemId: number): Promise<PriceChangesRespons
     const { data } = await api.get<PriceChangesResponse>('/api/price-changes/search', {
         params: { item_id: itemId },
     });
+    return data;
+};
+
+export const fetchItemDetails = async (itemId: number): Promise<ItemDetailsResponse> => {
+    const { data } = await api.get<ItemDetailsResponse>(`/api/items/details/${itemId}`);
     return data;
 };
