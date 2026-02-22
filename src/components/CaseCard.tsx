@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import type { CaseItem } from '../types';
 import { cn } from '../lib/utils';
@@ -133,7 +134,12 @@ export const CaseCard = ({ item }: CaseCardProps) => {
     const isPositive = item.change_pct >= 0;
 
     return (
-        <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-800 p-4 flex flex-col gap-4 hover:shadow-md transition-shadow">
+        <Link 
+            to={`/item/${item.item_id}`}
+            className="bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-800 p-4 flex flex-col gap-4 hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer"
+            aria-label={`View details for ${item.name}`}
+            tabIndex={0}
+        >
             <div className="aspect-square relative bg-zinc-100 dark:bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center p-4">
                 <img
                     src={`${STEAM_IMAGE_BASE_URL}${item.icon_url}/128fx128f`}
@@ -184,6 +190,6 @@ export const CaseCard = ({ item }: CaseCardProps) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };

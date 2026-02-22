@@ -23,3 +23,30 @@ export interface SearchParams {
     page: number;
     sort_by: SortOption;
 }
+
+// Chart data types
+export interface ChartDataPoint {
+    timestamp: string;
+    price: number;
+    change_pct: number;
+}
+
+export interface ChartResponse {
+    data: ChartDataPoint[];
+    success: boolean;
+}
+
+export type ChartInterval = '7d' | '1m' | '3m' | '6m';
+
+// Price stats types
+export interface PriceStat {
+    interval: string;
+    label: string;
+    high_price: number;
+    low_price: number;
+}
+
+export interface PriceStatsResponse {
+    data: PriceStat[];
+    success: boolean;
+}
