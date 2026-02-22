@@ -5,7 +5,6 @@ import { usePriceChart, usePriceStats, useItem, useItemDetailsQuery } from '../h
 import { PriceChart } from '../components/PriceChart';
 import { PriceStats } from '../components/PriceStats';
 import type { ChartInterval } from '../types';
-import { cn } from '../lib/utils';
 
 const STEAM_IMAGE_BASE_URL = 'https://community.fastly.steamstatic.com/economy/image/';
 
@@ -53,8 +52,6 @@ export const ItemDetailPage = () => {
             </div>
         );
     }
-
-    const isPositive = item.change_pct >= 0;
 
     return (
         <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
